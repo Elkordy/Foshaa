@@ -1,0 +1,16 @@
+{
+    "name": "fosha-admin-dashboard",
+    "version": "1.0.0",
+    "description": "Admin Dashboard for Fosha",
+    "main": "index.html",
+    "scripts": {
+      "build": "vue-cli-service build"
+    },
+    "dependencies": {
+      "vue": "^2.6.11"
+    },
+    "devDependencies": {
+      "@vue/cli-service": "^4.5.0"
+    }
+  }
+  
