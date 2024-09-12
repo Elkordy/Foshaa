@@ -1,16 +1,22 @@
 {
-    "name": "fosha-admin-dashboard",
-    "version": "1.0.0",
-    "description": "Admin Dashboard for Fosha",
-    "main": "index.html",
-    "scripts": {
-      "build": "vue-cli-service build"
-    },
-    "dependencies": {
-      "vue": "^2.6.11"
-    },
-    "devDependencies": {
-      "@vue/cli-service": "^4.5.0"
-    }
-  }
-  
+  "name": "fosha-admin-dashboard",
+  "version": "1.0.0",
+  "description": "Admin Dashboard for Fosha",
+  "main": "src/main.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^4.5.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+

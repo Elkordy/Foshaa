@@ -1,12 +1,12 @@
-# Use the official Node.js image
-FROM node:14
+# Stage 1: Build the application
+FROM node:22 AS builder
 
 # Create and change to the app directory
 WORKDIR /usr/src/app
 
 # Copy package.json and install dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm cache clean --force && npm install
 
 # Copy the rest of the application code
 COPY . .
@@ -14,12 +14,15 @@ COPY . .
 # Build the app for production
 RUN npm run build
 
-# Use NGINX to serve the app
+# Stage 2: Serve the application with NGINX
 FROM nginx:alpine
-COPY --from=0 /usr/src/app/dist /usr/share/nginx/html
+
+# Copy the build output from the builder stage
+COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
 
 # Expose the port NGINX runs on
 EXPOSE 80
 
 # Start NGINX
 CMD ["nginx", "-g", "daemon off;"]
+

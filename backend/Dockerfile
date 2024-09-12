@@ -1,14 +1,16 @@
 # Use the official Node.js image
-FROM node:14
+FROM node:22
 
 # Create and change to the app directory
 WORKDIR /usr/src/app
 
-# Copy package.json and install dependencies
+# Copy package.json and package-lock.json
 COPY package*.json ./
-RUN npm config set registry https://registry.npmjs.org/
-RUN npm cache clean --force
-RUN npm install
+
+# Update npm registry and clean cache, then install dependencies
+RUN npm config set registry https://registry.npmjs.org/ \
+    && npm cache clean --force \
+    && npm install
 
 # Copy the rest of the application code
 COPY . .
@@ -21,3 +23,4 @@ EXPOSE 3000
 
 # Start the app
 CMD ["node", "index.js"]
+
