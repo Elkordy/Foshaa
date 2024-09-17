@@ -7,6 +7,8 @@ services:
       - "3000:3000"
     volumes:
       - backend-data:/usr/src/app/data
+    depends_on:
+      - mongodb
 
   admin-dashboard:
     build:
@@ -24,6 +26,28 @@ services:
     volumes:
       - wordpress-data:/var/www/html
 
+  mongodb:
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+      - admin-dashboard
+      - wordpress
+
 volumes:
   backend-data:
   wordpress-data:
+  mongo-data:
+
