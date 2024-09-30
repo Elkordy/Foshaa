@@ -1,12 +1,12 @@
 # Stage 1: Build the application
-FROM node:22 AS builder
+FROM node:22-alpine AS builder
 
 # Create and change to the app directory
 WORKDIR /usr/src/app
 
 # Copy package.json and install dependencies
 COPY package*.json ./
-RUN npm cache clean --force && npm install
+RUN npm install
 
 # Copy the rest of the application code
 COPY . .

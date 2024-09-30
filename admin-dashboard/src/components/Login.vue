@@ -38,18 +38,23 @@ export default {
             password: this.password
           })
         });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+
+        // Log the response status and data to debug
+        console.log('Response Status:', response.status);
+        
         const data = await response.json();
-        if (data.success) {
+        console.log('Response Data:', data); // Debugging log to check the response
+
+        if (response.ok && data.success) { // Ensure both status OK and success are true
           this.loginSuccess = true;
           this.loginError = '';
         } else {
           this.loginError = data.message || 'Login failed';
+          this.loginSuccess = false; // Ensure login success is false when there's an error
         }
       } catch (error) {
         this.loginError = `Error during login: ${error.message}`;
+        this.loginSuccess = false; // Handle login failure case
       }
     }
   }
