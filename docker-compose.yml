@@ -13,12 +13,12 @@ services:
   admin-dashboard:
     image: elekrady/foshaa-admin-dashboard:latest
     ports:
-      - "8080:80"
-
+      - "8081:80"
+        
   wordpress:
     image: elekrady/foshaa-wordpress:latest
     ports:
-      - "8081:80"
+      - "8082:80"
     volumes:
       - wordpress-data:/var/www/html
 
