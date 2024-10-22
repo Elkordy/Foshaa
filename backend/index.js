@@ -48,6 +48,11 @@ app.post('/api/login', (req, res) => {
   return res.json({ success: true, message: 'Login successful' });
 });
 
+// Health check endpoint
+app.get('/healthz', (req, res) => {
+  res.status(200).send('OK');
+});
+
 app.get('/', (req, res) => {
   res.send('Hello, Fosha!');
 });
